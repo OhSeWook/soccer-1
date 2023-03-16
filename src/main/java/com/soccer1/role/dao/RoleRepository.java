@@ -10,4 +10,6 @@ import com.soccer1.role.entity.Role;
 public interface RoleRepository {
 
 	public List<Role> findAllRoles();
+	
+	public List<Role> findAllUserRoles(Long userId);
 }

@@ -62,12 +62,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .httpBasic();
 
 		http
-//			.authorizeRequests()
+			.authorizeRequests()
 //			.antMatchers("/admin/**").hasRole("ADMIN")
 //			.antMatchers("/user/**").hasRole("USER")
 //			.antMatchers("/swagger-ui.html").hasRole("ADMIN")
-//			.antMatchers("/**").permitAll()
-//		.and()
+			.antMatchers("/**").permitAll()
+		.and()
 			.formLogin()
 			.loginPage("/login.html")
 			.loginProcessingUrl("/admin/login")

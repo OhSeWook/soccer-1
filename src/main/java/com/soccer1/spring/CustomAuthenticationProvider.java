@@ -16,12 +16,16 @@ import org.springframework.stereotype.Component;
 
 import com.soccer1.component.CustomPasswordEncoding;
 import com.soccer1.member.vo.MemberVO;
+import com.soccer1.role.dao.RoleRepository;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	@Autowired
 	private UserDetailsService userDetailsService; //CustomUserDetails Class Autowired.
+	
+	@Autowired
+	private RoleRepository roleRepository; //CustomUserDetails Class Autowired.
 	
 	@Autowired
 	private CustomPasswordEncoding passwordEncoder; //BCryptPasswordEncoder Class Autowired.
@@ -39,7 +43,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 				
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		
+		roleRepository.findAllUserRoles(customUserDetails.getId()).stream().forEach( f-> { authorities.add(new SimpleGrantedAuthority(f.getRoleCode())); });
 		
 		return new UsernamePasswordAuthenticationToken(customUserDetails,password,authorities);
 

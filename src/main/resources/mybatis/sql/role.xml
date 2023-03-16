@@ -10,8 +10,19 @@
 			, R.ROLE_NAME
 			, RES.RESOURCES_ID
 		FROM TB_ROLE R
-		INNER JOIN TB_ROLE_RESOURCES RES
-			ON R.ROLE_ID = RES.ROLE_ID
+		INNER JOIN TB_RESOURCES_ROLE RES
+			ON RES.ROLE_ID = R.ROLE_ID
+	</select>
+	
+	<select id="findAllUserRoles" resultType="com.soccer1.role.entity.Role">
+		SELECT 
+			R.ROLE_ID
+			, R.ROLE_CODE
+		FROM TB_ROLE R
+		INNER JOIN TB_USER_ROLE UR
+			ON UR.ROLE_ID = R.ROLE_ID
+		WHERE 
+			UR.USER_ID = #{userId}
 	</select>
 	
 </mapper>
