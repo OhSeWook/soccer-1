@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soccer1.role.dao.RoleRepository">
+	
+	<select id="findAllRoles" resultType="com.soccer1.role.entity.Role">
+		SELECT 
+			R.ROLE_ID
+			, R.ROLE_CODE
+			, R.ROLE_NAME
+			, RES.RESOURCES_ID
+		FROM TB_ROLE R
+		INNER JOIN TB_ROLE_RESOURCES RES
+			ON R.ROLE_ID = RES.ROLE_ID
+	</select>
+	
+</mapper>
