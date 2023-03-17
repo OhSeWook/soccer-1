@@ -20,8 +20,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.soccer1.resources.dao.ResourcesRepository;
-import com.soccer1.role.dao.RoleRepository;
+import com.soccer1.resources.repository.ResourcesRepository;
+import com.soccer1.role.repository.RoleRepository;
 import com.soccer1.spring.CustomAccessDeniedHandler;
 import com.soccer1.spring.CustomFilterInvocationSecurityMetadataSource;
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.soccer1.member.vo.MemberVO;
+import com.soccer1.member.entity.User;
 
 @Controller
 public class AdminMain {
@@ -18,12 +18,9 @@ public class AdminMain {
 	}
 	
 	@RequestMapping(value = "/admin/dashboard", method = RequestMethod.GET)
-	public String dashboard(ModelAndView mv, @AuthenticationPrincipal MemberVO memberVO) {
+	public String dashboard(ModelAndView mv, @AuthenticationPrincipal User memberVO) {
 		return "admin/dashboard";
 	}
 	
-	@RequestMapping(value = "/user/user", method = RequestMethod.GET)
-	public String user(ModelAndView mv) {
-		return "user/user";
-	}
+	
 }

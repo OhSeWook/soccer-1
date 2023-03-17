@@ -3,7 +3,7 @@
 
 <mapper namespace="com.soccer1.member.dao.MemberRepository">
 	
-	<select id="getUserDetails" resultType="com.soccer1.member.vo.MemberVO">
+	<select id="getUserDetails" resultType="com.soccer1.member.entity.User">
 		SELECT 
 			ID
 			, USER_ID
@@ -13,7 +13,7 @@
 		WHERE USER_ID = #{userId}
 	</select>
 	
-	<select id="findAllMember" resultType="com.soccer1.member.vo.MemberVO">
+	<select id="findAllMember" resultType="com.soccer1.member.entity.User">
 		SELECT 
 			ID
 			, USER_ID

@@ -1,29 +1,39 @@
-package com.soccer1.member.vo;
+package com.soccer1.member.entity;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.soccer1.role.dto.RoleDTO;
-
 import lombok.Data;
 
 @Data
-public class MemberVO implements UserDetails {
+@Entity
+@Table(name = "tb_user")
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
-
-	private Long id;
-	private String userId;
-	private String name;
-	private String password;
-	private LocalDateTime regDate;
-	private LocalDateTime updDate;
 	
-	private Set<RoleDTO> userRoles;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String userId;
+	
+	private String name;
+	
+	private String password;
+	
+	private LocalDateTime regDate;
+	
+	private LocalDateTime updDate;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

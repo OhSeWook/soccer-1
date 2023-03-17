@@ -18,10 +18,10 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import com.soccer1.resources.dao.ResourcesRepository;
 import com.soccer1.resources.entity.Resource;
-import com.soccer1.role.dao.RoleRepository;
+import com.soccer1.resources.repository.ResourcesRepository;
 import com.soccer1.role.entity.Role;
+import com.soccer1.role.repository.RoleRepository;
 
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 	
@@ -30,8 +30,8 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
     @Autowired
     public CustomFilterInvocationSecurityMetadataSource(RoleRepository roleRepository, ResourcesRepository resourcesRepository) {
     	
-        List<Resource> resources = resourcesRepository.findAllResources();
-        List<Role> roles = roleRepository.findAllRoles();
+        List<Resource> resources = resourcesRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
 
         this.requestMap = new LinkedHashMap<>();
 
@@ -40,7 +40,7 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
             List<ConfigAttribute> configAttributes = new ArrayList<>();
 
             for (Role authority : roles) {
-                if (authority.getResourcesId().equals(resource.getResourcesId())) {
+                if (authority.getId().equals(resource.getId())) {
                 	String roldeCode = authority.getRoleCode();
                     configAttributes.add(new SecurityConfig(roldeCode));
                 }

@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.soccer1.member.dao.MemberRepository;
-import com.soccer1.member.vo.MemberVO;
+import com.soccer1.member.entity.User;
+import com.soccer1.member.repository.MemberRepository;
 
 @Service
 public class MemberServiceImpl implements UserDetailsService {
@@ -18,7 +18,7 @@ public class MemberServiceImpl implements UserDetailsService {
     @Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		
-    	MemberVO memberVO = memberRepository.getUserDetails(userId);
+    	User memberVO = memberRepository.findByUserId(userId);
     	
 		if(memberVO == null) {
 			throw new UsernameNotFoundException("유효하지 않는 로그인 정보입니다.");
