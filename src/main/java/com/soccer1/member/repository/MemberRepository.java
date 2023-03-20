@@ -8,6 +8,6 @@ import com.soccer1.member.entity.User;
 @Repository
 public interface MemberRepository extends JpaRepository<User, Long> {
 
-	public User findByUserId(String userId);
+	public User findByLoginId(String userId);
 
 }
