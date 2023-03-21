@@ -37,6 +37,7 @@ public class User implements UserDetails {
 	private LocalDateTime regDate;
 	
 	private LocalDateTime updDate;
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
