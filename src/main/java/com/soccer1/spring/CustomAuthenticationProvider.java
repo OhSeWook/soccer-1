@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import com.soccer1.component.CustomPasswordEncoding;
-import com.soccer1.member.entity.User;
+import com.soccer1.user.entity.User;
 import com.soccer1.userRole.entity.UserRole;
 import com.soccer1.userRole.repository.UserRoleRepository;
 

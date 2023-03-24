@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.soccer1.member.entity.User;
+import com.soccer1.user.entity.User;
 
 @Controller
 public class AdminMain {
