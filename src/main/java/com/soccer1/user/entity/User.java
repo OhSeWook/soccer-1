@@ -13,10 +13,13 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "tb_user")
 public class User implements UserDetails {
 
@@ -33,6 +36,8 @@ public class User implements UserDetails {
 	private String name;
 	
 	private String password;
+	
+	private String email;
 	
 	private LocalDateTime regDate;
 	
@@ -68,5 +73,13 @@ public class User implements UserDetails {
 	public String getUsername() {
 		return this.name;
 	}
+
+	@Builder
+    public User(String loginId, String password, String email, String name) {
+        this.loginId = loginId;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+    }
 
 }

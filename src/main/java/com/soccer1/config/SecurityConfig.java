@@ -20,8 +20,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.soccer1.authority.repository.AuthorityRepository;
 import com.soccer1.resources.repository.ResourcesRepository;
-import com.soccer1.role.repository.RoleRepository;
 import com.soccer1.spring.CustomAccessDeniedHandler;
 import com.soccer1.spring.CustomFilterInvocationSecurityMetadataSource;
 
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private AuthenticationFailureHandler authenticationFailureHandler;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private AuthorityRepository authorityRepository;
 	
 	@Autowired
 	private ResourcesRepository resourcesRepository;
@@ -94,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public CustomFilterInvocationSecurityMetadataSource customFilterInvocationSecurityMetadataSource() {
-		return new CustomFilterInvocationSecurityMetadataSource(roleRepository, resourcesRepository);
+		return new CustomFilterInvocationSecurityMetadataSource(authorityRepository, resourcesRepository);
 	}
 	
 	@Bean

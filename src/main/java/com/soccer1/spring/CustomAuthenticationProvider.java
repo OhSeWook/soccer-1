@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 import com.soccer1.component.CustomPasswordEncoding;
 import com.soccer1.user.entity.User;
-import com.soccer1.userRole.entity.UserRole;
-import com.soccer1.userRole.repository.UserRoleRepository;
+import com.soccer1.userAuthority.entity.UserAuthority;
+import com.soccer1.userAuthority.repository.UserAuthorityRepository;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -26,7 +26,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private UserDetailsService userDetailsService; //CustomUserDetails Class Autowired.
 	
 	@Autowired
-	private UserRoleRepository userRoleRepository; //CustomUserDetails Class Autowired.
+	private UserAuthorityRepository userRoleRepository; //CustomUserDetails Class Autowired.
 	
 	@Autowired
 	private CustomPasswordEncoding passwordEncoder; //BCryptPasswordEncoder Class Autowired.
@@ -46,10 +46,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 //		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		
-		List<UserRole> list = userRoleRepository.findAllByUserId(customUserDetails.getId());
+		List<UserAuthority> list = userRoleRepository.findAllByUserId(customUserDetails.getId());
 		
-		for(UserRole u:list) {
-			authorities.add(new SimpleGrantedAuthority(u.getRole().getRoleCode()));
+		for(UserAuthority u:list) {
+			authorities.add(new SimpleGrantedAuthority(u.getAuthority().getAuthorityCode()));
 		}
 		
 		return new UsernamePasswordAuthenticationToken(customUserDetails,password,authorities);

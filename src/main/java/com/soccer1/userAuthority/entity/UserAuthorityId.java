@@ -1,4 +1,4 @@
-package com.soccer1.userRole.entity;
+package com.soccer1.userAuthority.entity;
 
 import java.io.Serializable;
 
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRoleId implements Serializable {
+public class UserAuthorityId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Long userId;
 	
-	private Long role;
+	private Long authority;
 
 }

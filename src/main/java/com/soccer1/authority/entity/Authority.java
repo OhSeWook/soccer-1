@@ -1,4 +1,4 @@
-package com.soccer1.role.entity;
+package com.soccer1.authority.entity;
 
 import java.io.Serializable;
 
@@ -13,18 +13,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tb_role")
-public class Role implements Serializable {
+@Table(name = "tb_authority")
+public class Authority implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
+	@Column(name = "authority_id")
     private Long id;
 		
-	private String roleCode;
+	private String authorityCode;
 	
-	private String roleName;
+	private String authorityName;
 
 }
