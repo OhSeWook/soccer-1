@@ -41,8 +41,8 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 
             for (Authority authority : roles) {
                 if (authority.getId().equals(resource.getId())) {
-                	String roldeCode = authority.getAuthorityCode();
-                    configAttributes.add(new SecurityConfig(roldeCode));
+                	String roleCode = authority.getRoleType().name();
+                    configAttributes.add(new SecurityConfig(roleCode));
                 }
             }
 

@@ -49,7 +49,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		List<UserAuthority> list = userRoleRepository.findAllByUserId(customUserDetails.getId());
 		
 		for(UserAuthority u:list) {
-			authorities.add(new SimpleGrantedAuthority(u.getAuthority().getAuthorityCode()));
+			authorities.add(new SimpleGrantedAuthority(u.getAuthority().getRoleType().name()));
 		}
 		
 		return new UsernamePasswordAuthenticationToken(customUserDetails,password,authorities);
