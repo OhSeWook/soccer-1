@@ -1,6 +1,5 @@
-package com.soccer1.authority.entity;
+package com.soccer1.order.entity;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -12,27 +11,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.soccer1.authority.dto.RoleType;
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "tb_authority")
-public class Authority implements Serializable {
+@NoArgsConstructor
+@Table(name = "tb_order")
+public class Order {
 
-	private static final long serialVersionUID = 1L;
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "authority_id")
-    private Long id;
+	@Column(name = "order_id")
+	private Long id;
+	
+	@Column(name = "user_id")
+	private Long userId;
 	
 	@Enumerated(EnumType.STRING)
-	private RoleType roleType;
+	private OrderStatus orderStatus;
 	
-	private String authorityName;
-
 	private LocalDateTime regDate;
 	
 	private LocalDateTime updDate;
