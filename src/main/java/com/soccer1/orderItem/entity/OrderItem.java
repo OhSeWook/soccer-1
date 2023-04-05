@@ -7,7 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.soccer1.item.entity.Item;
+import com.soccer1.order.entity.Order;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +28,13 @@ public class OrderItem {
 	@Column(name = "order_item_id")
 	private Long id;
 	
-	@Column(name = "item_id")
-	private Long itemId;
+	@ManyToOne
+	@JoinColumn(name = "item_id")
+	private Item item;
 	
-	@Column(name = "order_id")
-	private Long orderId;
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private Order order;
 	
 	private int orderPrice;
 	

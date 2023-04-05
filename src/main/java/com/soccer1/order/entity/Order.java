@@ -1,6 +1,8 @@
 package com.soccer1.order.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.soccer1.orderItem.entity.OrderItem;
+import com.soccer1.user.entity.User;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,8 +33,12 @@ public class Order {
 	@Column(name = "order_id")
 	private Long id;
 	
-	@Column(name = "user_id")
-	private Long userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@OneToMany(mappedBy = "user")
+	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
@@ -34,4 +46,19 @@ public class Order {
 	private LocalDateTime regDate;
 	
 	private LocalDateTime updDate;
+	
+	public void setUser(User user) {
+		
+		if( this.user != null ) {
+			this.user.getOrder().remove(this);
+		}
+		
+		this.user = user;
+		user.getOrder().add(this);
+	}
+	
+	public void setOrderItems(OrderItem orderItem) {
+		orderItems.add(orderItem);
+		orderItem.setOrder(this);
+	}
 }
