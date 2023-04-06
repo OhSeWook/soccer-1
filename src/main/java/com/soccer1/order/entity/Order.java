@@ -14,8 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.soccer1.delivery.entity.Delivery;
 import com.soccer1.orderItem.entity.OrderItem;
 import com.soccer1.user.entity.User;
 
@@ -37,8 +39,12 @@ public class Order {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+	
+	@OneToOne
+	@JoinColumn(name = "delivery_id")
+	private Delivery delivery;
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
@@ -60,5 +66,10 @@ public class Order {
 	public void setOrderItems(OrderItem orderItem) {
 		orderItems.add(orderItem);
 		orderItem.setOrder(this);
+	}
+	
+	public void setDelivery(Delivery delivery) {
+		delivery.setOrder(this);
+		this.delivery = delivery;
 	}
 }

@@ -17,6 +17,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.soccer1.order.entity.Order;
+import com.soccer1.userAuthority.entity.UserAuthority;
 
 import lombok.Builder;
 import lombok.Data;
@@ -52,6 +53,9 @@ public class User implements UserDetails {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Order> order = new ArrayList<Order>();
+	
+	@OneToMany(mappedBy = "user")
+	private List<UserAuthority> userAuthoritys = new ArrayList<UserAuthority>();
 	
 	private LocalDateTime regDate;
 	

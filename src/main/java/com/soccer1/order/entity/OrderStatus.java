@@ -6,9 +6,10 @@ import lombok.Getter;
 public enum OrderStatus {
 
 	ORDER(1, "ORDER", "주문")
-	, USER_CANCEL(2, "USER_CANCEL", "취소")
-	, ADMIN_CANCEL(3, "ADMIN_CANCEL", "취소")
-	, ETC_CANCEL(4, "ETC_CANCEL", "취소");
+	, USER_CANCEL(2, "USER_CANCEL", "사용자 취소")
+	, ADMIN_CANCEL(3, "ADMIN_CANCEL", "관리자 취소")
+	, ERROR_CANCEL(4, "ERROR_CANCEL", "에러 취소")
+	, ETC_CANCEL(5, "ETC_CANCEL", "기타 취소");
 	
 	private int code;
 	private String type;

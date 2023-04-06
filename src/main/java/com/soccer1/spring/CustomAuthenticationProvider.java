@@ -3,6 +3,8 @@ package com.soccer1.spring;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,7 +19,6 @@ import org.springframework.stereotype.Component;
 import com.soccer1.component.CustomPasswordEncoding;
 import com.soccer1.user.entity.User;
 import com.soccer1.userAuthority.entity.UserAuthority;
-import com.soccer1.userAuthority.repository.UserAuthorityRepository;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -26,12 +27,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private UserDetailsService userDetailsService; //CustomUserDetails Class Autowired.
 	
 	@Autowired
-	private UserAuthorityRepository userRoleRepository; //CustomUserDetails Class Autowired.
-	
-	@Autowired
 	private CustomPasswordEncoding passwordEncoder; //BCryptPasswordEncoder Class Autowired.
 	
 	@Override
+	@Transactional
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
 		String userId = authentication.getName();
@@ -46,7 +45,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 //		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		
-		List<UserAuthority> list = userRoleRepository.findAllByUserId(customUserDetails.getId());
+		List<UserAuthority> list = customUserDetails.getUserAuthoritys();
 		
 		for(UserAuthority u:list) {
 			authorities.add(new SimpleGrantedAuthority(u.getAuthority().getRoleType().name()));
