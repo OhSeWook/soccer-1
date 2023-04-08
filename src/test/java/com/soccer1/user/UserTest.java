@@ -27,7 +27,7 @@ class UserTest {
 	@Test
 	void userSaveFindTest() throws Exception {
 		String password = customPasswordEncoding.sha256Encoding("1234");  
-		UserRequestDto userRequestDto = new UserRequestDto("osw", "관리자", password, "osw@naver.com");
+		UserRequestDto userRequestDto = new UserRequestDto("admin1", "슈퍼 관리자", password, "admin3@naver.com");
 		User user = userService.userSave(userRequestDto);
 		
 		Optional<User> userFind = userService.userFindById(user.getId());

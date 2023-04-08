@@ -98,6 +98,8 @@ public class User implements UserDetails {
         this.password = password;
         this.email = email;
         this.name = name;
+        this.regDate = LocalDateTime.now();
+		this.updDate = LocalDateTime.now();
     }
 
 }
