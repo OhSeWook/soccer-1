@@ -17,18 +17,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.soccer1.common.entity.BaseEntity;
 import com.soccer1.delivery.entity.Delivery;
 import com.soccer1.orderItem.entity.OrderItem;
 import com.soccer1.user.entity.User;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_order")
-public class Order {
+public class Order extends BaseEntity {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,10 +51,6 @@ public class Order {
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
-	
-	private LocalDateTime regDate;
-	
-	private LocalDateTime updDate;
 	
 	public void setUser(User user) {
 		

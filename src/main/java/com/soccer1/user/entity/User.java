@@ -16,21 +16,24 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.soccer1.common.entity.BaseEntity;
 import com.soccer1.order.entity.Order;
 import com.soccer1.userAuthority.entity.UserAuthority;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_user")
-public class User implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 2599924012058210220L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
@@ -56,11 +59,6 @@ public class User implements UserDetails {
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserAuthority> userAuthoritys = new ArrayList<UserAuthority>();
-	
-	private LocalDateTime regDate;
-	
-	private LocalDateTime updDate;
-	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

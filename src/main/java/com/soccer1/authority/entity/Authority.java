@@ -1,7 +1,6 @@
 package com.soccer1.authority.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.soccer1.authority.dto.RoleType;
+import com.soccer1.common.entity.BaseEntity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_authority")
-public class Authority implements Serializable {
+public class Authority extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -32,8 +34,4 @@ public class Authority implements Serializable {
 	private RoleType roleType;
 	
 	private String authorityName;
-
-	private LocalDateTime regDate;
-	
-	private LocalDateTime updDate;
 }

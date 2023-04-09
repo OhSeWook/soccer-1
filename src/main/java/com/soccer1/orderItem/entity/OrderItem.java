@@ -1,7 +1,5 @@
 package com.soccer1.orderItem.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.soccer1.common.entity.BaseEntity;
 import com.soccer1.item.entity.Item;
 import com.soccer1.order.entity.Order;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_order_item")
-public class OrderItem {
+public class OrderItem extends BaseEntity {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +40,4 @@ public class OrderItem {
 	private int orderPrice;
 	
 	private int orderCnt;
-	
-	private LocalDateTime regDate;
-	
-	private LocalDateTime updDate;
 }
