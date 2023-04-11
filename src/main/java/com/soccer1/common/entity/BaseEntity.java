@@ -8,8 +8,11 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity {
 
 	protected Long regId;
+	
 	protected Long updId;
+	
 	protected LocalDateTime regDate;
+	
 	protected LocalDateTime updDate;
 	
 	public Long getRegId() {

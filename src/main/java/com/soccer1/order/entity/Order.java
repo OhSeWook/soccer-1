@@ -1,6 +1,5 @@
 package com.soccer1.order.entity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
